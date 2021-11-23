@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/22 17:27:18 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2021/11/23 12:57:02 by vchevill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,56 @@ int	ft_findnum(char **numlist, char *num, int length)
 	numberofnum = 0;
 	while (i < length)
 	{
-		if (ft_strcmp(numlist[i], num) == 0)
+		if (ft_strncmp(numlist[i], num, ft_strlen(num)) == 0)
 			numberofnum++;
 		i++;
 	}
 	return (numberofnum);
 }
 
-int	main(int argc, char **argv)
+int	ft_isnum(char *num)
 {
 	int	i;
 
 	i = 0;
-	while (argv[i])
+	while (num[i])
 	{
-		if (argv[i] != ft_itoa(ft_atoi(argv[i])) || !ft_isnum(argv[i])
-			|| ft_findnum(argv, argv[i], argc) > 1) // check le int overflow || check au'il y ai que des nombres || check au'il n'y ai pas de doublons
-		{
-			ft_putstr("Error\n");
+		if (!ft_isprint(num[i]))
 			return (1);
-		}
 		i++;
 	}
-	return(0);
+	return (0);
+}
+
+int	ft_checkargs(int argc, char **argv)
+{
+	int		i;
+	char	*itoa;
+
+	i = 1;
+	while (argv[i])
+	{
+		itoa = ft_itoa(ft_atoi(argv[i]));
+		if (ft_strncmp(argv[i], itoa, ft_strlen(itoa)) != 0
+			|| ft_isnum(argv[i]) != 0 || ft_findnum(argv, argv[i], argc) > 1)
+		{
+			free(itoa);
+			ft_putstr_fd("Error\n", 1);
+			return (1);
+		}
+		else
+			free(itoa);
+		i++;
+	}
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	int		i;
+
+	if (ft_checkargs(argc, argv) == 1)
+		return (1);
+	i = 0;
+	return (0);
 }
