@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/23 14:07:03 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2021/11/23 16:27:04 by vchevill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ typedef struct s_pile
 	int			*list;
 }				t_pile;
 
-int	ft_findnum(char **numlist, char *num, int piletop);
-int	ft_isnum(char *num);
-int	ft_checkargs(int argc, char **argv);
+int		ft_findnum(char **numlist, char *num, int piletop);
+int		ft_isnum(char *num);
+int		ft_checkargs(int argc, char **argv);
+void	ft_swap_pile(t_pile *pile);
+void	ft_rotate_pile(t_pile *pile);
+void	ft_rotate_reverse_pile(t_pile *pile);
 
 #endif
