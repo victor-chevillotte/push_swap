@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/23 13:03:46 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2021/11/23 14:07:03 by vchevill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-int	ft_findnum(char **numlist, char *num, int length);
+typedef struct s_pile
+{
+	int			piletop;
+	int			*list;
+}				t_pile;
+
+int	ft_findnum(char **numlist, char *num, int piletop);
 int	ft_isnum(char *num);
 int	ft_checkargs(int argc, char **argv);
 
