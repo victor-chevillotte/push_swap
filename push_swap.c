@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/23 13:16:31 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2021/11/23 13:39:14 by vchevill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ void	ft_printpile(int *pile, int length)
 	int	i;
 
 	i = -1;
+	printf("%i",length);
 	while (++i < length)
+	{
 		ft_putnbr_fd(pile[i], 1);
+		ft_putchar_fd('\n', 1);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -32,7 +36,8 @@ int	main(int argc, char **argv)
 	int		*pilea;
 	int		*pileb;
 
-	i = 1;
+	i = 0;
+	argc--;
 	if (ft_checkargs(argc, argv) == 1)
 		return (1);
 	pilea = ft_calloc(sizeof(int), argc);
@@ -43,7 +48,7 @@ int	main(int argc, char **argv)
 		return (1);
 	while (i < argc)
 	{
-		pilea[i - 1] = ft_atoi(argv[i]);
+		pilea[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
 	ft_printpile(pilea, argc);
