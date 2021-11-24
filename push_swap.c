@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/24 10:24:31 by vchevill         ###   ########.fr       */
+/*   Updated: 2021/11/24 10:27:26 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	if (!pileb)
 		return (1);
 	pileb->piletop = -1;
-	pileb->list = malloc(pilea->piletop + 1);
+	pileb->list = malloc(sizeof(int) * (pilea->piletop + 1));
 	if (!(pileb->list))
 		return (1);
 	while (i < argc)
@@ -95,5 +95,7 @@ int	main(int argc, char **argv)
 	ft_printpile(pilea);
 	ft_putstr_fd("<---pile B-->\n", 1);
 	ft_printpile(pileb);
+	free(pilea);
+	free(pileb);
 	return (0);
 }
