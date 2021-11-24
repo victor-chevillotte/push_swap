@@ -6,60 +6,22 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/23 16:35:57 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2021/11/24 10:24:31 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push_pile_2(int num_to_swap, t_pile *pile_add)
-{
-	int	*tmp;
-	int	i;
-
-	i = -1;
-
-	tmp = malloc(sizeof(int) * (pile_add->piletop + 2));
-	if (!tmp)
-		return ;
-	while (++i <= pile_add->piletop)
-		tmp[i] = pile_add->list[i];
-	pile_add->piletop++;
-	tmp[i] = num_to_swap;
-	pile_add->list = malloc(sizeof(int) * (pile_add->piletop + 1));
-	if (!(pile_add->list))
-		return ;
-	i = -1;
-	while (++i <= pile_add->piletop)
-		pile_add->list[i] = tmp[i];
-	free(tmp);
-}
-
 void	ft_push_pile(t_pile *pile_rem, t_pile *pile_add)
 {
-	int	*tmp;
-	int	i;
 	int	num_to_swap;
 
 	if (pile_rem->piletop < 1)
 		return ;
+	num_to_swap = pile_rem->list[pile_rem->piletop];
 	pile_rem->piletop--;
-	tmp = malloc(sizeof(int) * (pile_rem->piletop + 1));
-	if (!tmp)
-		return ;
-	i = -1;
-	while (++i <= pile_rem->piletop)
-		tmp[i] = pile_rem->list[i];
-	num_to_swap = pile_rem->list[i];
-	pile_rem->list = malloc(sizeof(int) * (pile_rem->piletop + 1));
-	if (!(pile_rem->list))
-		return ;
-	i = -1;
-	while (++i <= pile_rem->piletop)
-		pile_rem->list[i] = tmp[i];
-	i = -1;
-	free(tmp);
-	ft_push_pile_2(num_to_swap, pile_add);
+	pile_add->piletop++;
+	pile_add->list[pile_add->piletop] = num_to_swap;
 }
 
 void	ft_printpile(t_pile *pile)
@@ -95,7 +57,7 @@ int	main(int argc, char **argv)
 	if (!pileb)
 		return (1);
 	pileb->piletop = -1;
-	pileb->list = malloc(0);
+	pileb->list = malloc(pilea->piletop + 1);
 	if (!(pileb->list))
 		return (1);
 	while (i < argc)
