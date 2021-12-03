@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/25 11:48:18 by vchevill         ###   ########.fr       */
+/*   Updated: 2021/12/03 11:50:19 by vchevill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb)
 			ft_rotate_reverse_pile(pila, pilb, a);
 	i = -1;
 	ft_push_pile(pila, pilb, a);
-	while (++i < pilb->piletop)
-		if
+	//while (++i < pilb->piletop)
+	//	if
 }
 
 
