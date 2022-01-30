@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2021/12/03 11:50:19 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2022/01/30 15:30:53 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int main(int argc, char **argv)
 	t_pile	*pila;
 	t_pile	*pilb;
 
+	if (argc == 1)
+		return (0);
 	argc--;
 	pila = malloc(sizeof(t_pile));
 	if (!pila)

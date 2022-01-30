@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 14:20:50 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 15:33:11 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	ft_findnum(char **numlist, char *num, int piletop)
 	int numi;
 	
 	numi = ft_atoi(num);
-	i = 1;
+	i = 0;
 	numberofnum = 0;
 	while (i < piletop)
 	{
-		if (ft_atoi(numlist[i + 1]) == numi)
+		if (ft_atoi(numlist[i]) == numi)
 			numberofnum++;
 		i++;
 	}
@@ -49,11 +49,11 @@ int	ft_checkargs(int piletop, char **argv)
 	int		i;
 	char	*itoa;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		itoa = ft_itoa(ft_atoi(argv[i]));
-		if (ft_strncmp(argv[i], itoa, ft_strlen(itoa)) != 0
+		if ((ft_strncmp(argv[i], itoa, ft_strlen(itoa)) != 0 && ft_atoi(argv[i]) != 0)
 			|| ft_isnum(argv[i]) != 0 || ft_findnum(argv, argv[i], piletop) > 1)
 		{
 			free(itoa);
@@ -66,22 +66,45 @@ int	ft_checkargs(int piletop, char **argv)
 	return (0);
 }
 
-int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
+int ft_sizeof(char **argv)
 {
 	int	i;
-	int	*tmp;
-	int	*tmpnotsorted;
-	int	j;
+	
+	i = 0;
+	while (argv[i])
+	{
+		i++;
+	}
+		
+	return (i);
+}
+
+int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
+{
+	int		i;
+	char	**tab;
+	int		*tmp;
+	int		*tmpnotsorted;
+	int		j;
 
 	i = 0;
 	j = 0;
-	if (ft_checkargs(argc, argv) == 1)
-		return (1);
-	tmp = malloc(sizeof(int) * (argc));
-	if (!tmp)
+	if (argc == 1)
+	{
+		tab = ft_split(argv[1], ' ');
+		if (!tab)
+			return (1);
+		argc = ft_sizeof(tab);
+	}
+	else 
+		tab = &argv[1];
+	if (ft_checkargs(argc, tab) == 1)
 		return (1);
 	tmpnotsorted = malloc(sizeof(int) * (argc));
 	if (!tmpnotsorted)
+		return (1);
+	tmp = malloc(sizeof(int) * (argc));
+	if (!tmp)
 		return (1);
 	pila->piletop = argc - 1;
 	pila->letter = 'A';
@@ -96,12 +119,12 @@ int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 	i = argc - 1;
 	while (i >= 0)
 	{
-		tmp[argc - i - 1] = ft_atoi(argv[i + 1]);
-		tmpnotsorted[argc - i - 1] = ft_atoi(argv[i + 1]);
+		tmp[argc - i - 1] = ft_atoi(tab[i]);
+		tmpnotsorted[argc - i - 1] = ft_atoi(tab[i]);
 		i--;
 	}
 	/*i = pila->piletop + 1;
-	while (--i >= 0)//*int non triee
+	while (--i >= 0) *int non triee
 	{
 		ft_putnbr_fd(tmpnotsorted[i], 1);
 		ft_putchar_fd('\n', 1);
@@ -109,7 +132,7 @@ int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 		quick_sort(tmp, argc);
 
 	/*i = 0;
-	while (i < pila->piletop)//*int triee
+	while (i < pila->piletop) *int triee
 	{
 		ft_putnbr_fd(tmp[i], 1);
 		ft_putchar_fd('\n', 1);
