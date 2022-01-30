@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 22:02:58 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 22:07:03 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_extrem
 {
 	int			value;
 	int			index;
+	int			chosen;
 }				t_extrem;
 
 typedef enum e_letter
