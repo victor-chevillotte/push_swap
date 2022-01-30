@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2021/12/03 12:08:26 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2022/01/30 14:20:50 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ int	ft_findnum(char **numlist, char *num, int piletop)
 {
 	int	i;
 	int	numberofnum;
-
+	int numi;
+	
+	numi = ft_atoi(num);
 	i = 1;
 	numberofnum = 0;
 	while (i < piletop)
 	{
-		if (ft_strncmp(numlist[i + 1], num, ft_strlen(num)) == 0)
+		if (ft_atoi(numlist[i + 1]) == numi)
 			numberofnum++;
 		i++;
 	}
@@ -98,30 +100,32 @@ int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 		tmpnotsorted[argc - i - 1] = ft_atoi(argv[i + 1]);
 		i--;
 	}
-	i = pila->piletop + 1;
+	/*i = pila->piletop + 1;
 	while (--i >= 0)//*int non triee
 	{
 		ft_putnbr_fd(tmpnotsorted[i], 1);
 		ft_putchar_fd('\n', 1);
-	}
+	}*/
 		quick_sort(tmp, argc);
 
-	i = 0;
+	/*i = 0;
 	while (i < pila->piletop)//*int triee
 	{
 		ft_putnbr_fd(tmp[i], 1);
 		ft_putchar_fd('\n', 1);
 		i++;
-	}
-	// jusau"ici c'est ok
+	}*/
+	j = 0;
+	i = 0;
 	while (i < argc)
 	{
 		while (j < argc)
 		{
-			if (tmp[j] == tmpnotsorted[i])// pb ici
+			if (tmp[j] == tmpnotsorted[i])
 				pila->list[i] = j;
 			j++;
 		}
+		j = 0;
 		i++;
 	}	
 	free(tmpnotsorted);
