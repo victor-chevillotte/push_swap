@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 18:44:51 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 18:56:26 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int	ft_checkargs(char **num_tab)
 	{
 		itoa = ft_itoa(ft_atoi(num_tab[i]));
 		if ((ft_strncmp(num_tab[i], itoa, ft_strlen(itoa)) != 0
-				&& ft_atoi(num_tab[i]) != 0)
+				&& ft_strncmp(num_tab[i], itoa, ft_strlen(num_tab[i])) != 0
+				&& ft_strncmp(num_tab[i], "-0", ft_strlen(num_tab[i])) != 0
+				&& ft_strncmp(num_tab[i], "0", ft_strlen(num_tab[i])) != 0
+				&& ft_strncmp(num_tab[i], "+0", ft_strlen(num_tab[i])) != 0)
 			|| ft_isnum(num_tab[i]) != 0 || ft_findnum(num_tab, num_tab[i]) > 1)
 		{
 			free(itoa);
