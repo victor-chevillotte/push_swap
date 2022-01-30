@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 00:19:02 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 00:21:20 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ int static ft_get_min_max(t_extrem	*min, t_extrem	*max, t_pile	*pilb)
 	else
 		return (pilb->piletop / 2 + 1);
 }
+
 void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
 {
-	int			i;
 	int 		med_b;
 	t_extrem	min;
 	t_extrem	max;
 	
 	while (pilb->piletop >= 0)
 	{
-		med_b = ft_get_min_max (&min, &max, pilb);
+		med_b = ft_get_min_max(&min, &max, pilb);
 		/*ft_putstr_fd("<---pile B-->\n", 1);
 		ft_printpile(pilb);
 		dprintf(1, "max index=%i, min index=%i, med_b =%i \n", max.index, min.index, med_b );*/
@@ -67,7 +67,6 @@ void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
 					ft_rotate_reverse_pile(pila, pilb, b);
 			}
 			ft_rotate_reverse_pile(pila, pilb, b);
-			//dprintf(1, "%i \n", min.index);
 		}
 		else if ((min.index > med_b  && min.index - med_b > max.index)|| (max.index >= med_b  && max.index - med_b <= min.index))
 		{
@@ -149,5 +148,5 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 		else
 			ft_rotate_pile(pila, pilb, a);
 	}
-	
+	ft_sort_chunk_in_b(pila, pilb);
 }
