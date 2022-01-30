@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 19:07:55 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:11:41 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		ft_isnum(char *num);
 int		ft_checkargs(char **num_tab);
 int		ft_pushswap_error(void);
 void	quick_sort(int *tab, int size);
-
 
 /* OPERATIONS */
 void	ft_swap_pile(t_pile *pila, t_pile *pilb, t_letter letter);

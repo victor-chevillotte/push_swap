@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:09:23 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 19:10:07 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:13:04 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ void static	ft_push_pile_f(t_pile *pile_rem, t_pile *pile_add)
 	pile_add->list[pile_add->piletop] = num_to_swap;
 }
 
-
 void	ft_push_pile(t_pile *pila, t_pile *pilb, t_letter letter)
 {
-
 	ft_putchar_fd('p', 1);
 	if (letter == a)
 	{

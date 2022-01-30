@@ -6,21 +6,22 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 14:00:22 by mdesoeuv          #+#    #+#             */
-/*   Updated: 2021/12/03 11:58:52 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2022/01/30 19:12:26 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void ft_swap(int *a, int *b)
+
+void static	ft_swap(int *a, int *b)
 {
-	int tmp_a;
+	int	tmp_a;
 
 	tmp_a = *a;
 	*a = *b;
 	*b = tmp_a;
 }
 
-int	fill_tab(int **tab, int argc, char **argv)
+int static	fill_tab(int **tab, int argc, char **argv)
 {
 	int	size;
 	int	i;
@@ -39,7 +40,7 @@ int	fill_tab(int **tab, int argc, char **argv)
 	return (size);
 }
 
-int	swap_from_left(int *tab, int i, int j)
+int static	swap_from_left(int *tab, int i, int j)
 {
 	if (i == j)
 		return (i);
@@ -55,7 +56,7 @@ int	swap_from_left(int *tab, int i, int j)
 	return (j);
 }
 
-int	swap_from_right(int *tab, int i, int j)
+int static	swap_from_right(int *tab, int i, int j)
 {
 	if (i == j)
 		return (i);
