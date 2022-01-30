@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   ft_quick_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 14:00:22 by mdesoeuv          #+#    #+#             */
-/*   Updated: 2022/01/30 19:16:02 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 20:09:45 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,6 @@ void static	ft_swap(int *a, int *b)
 	*a = *b;
 	*b = tmp_a;
 }
-/*
-int static	fill_tab(int **tab, int argc, char **argv)
-{
-	int	size;
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 1;
-	size = argc - 1;
-	*tab = malloc(sizeof(int) * size);
-	if (!*tab)
-		return (-1);
-	while (i < argc - 1)
-	{
-		(*tab)[i++] = ft_atoi(argv[j++]);
-	}
-	return (size);
-}*/
 
 int	swap_from_left(int *tab, int i, int j)
 {
