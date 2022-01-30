@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 19:11:41 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:15:28 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,17 @@ typedef enum e_letter
 
 /* INIT */
 int		ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb);
+void	ft_match_index(int argc, int *tmp, int *tmpnotsorted, t_pile *pila);
+int		ft_sizeof(char **num_tab);
 int		ft_findnum(char **num_tab, char *num);
 int		ft_isnum(char *num);
 int		ft_checkargs(char **num_tab);
 int		ft_pushswap_error(void);
+
+/* QUICK_SORT */
 void	quick_sort(int *tab, int size);
+int		swap_from_left(int *tab, int i, int j);
+int		swap_from_right(int *tab, int i, int j);
 
 /* OPERATIONS */
 void	ft_swap_pile(t_pile *pila, t_pile *pilb, t_letter letter);

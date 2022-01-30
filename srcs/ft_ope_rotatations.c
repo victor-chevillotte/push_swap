@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_operations.c                             :+:      :+:    :+:   */
+/*   ft_ope_rotatations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 16:26:20 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 19:09:59 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:14:35 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void static	ft_rotate_reverse_pile_f(t_pile *pile)
+void static	ft_rotate_pile_f(t_pile *pile)
 {
 	int	tmp;
 	int	i;
 
 	if (pile->piletop < 1)
 		return ;
-	tmp = pile->list[0];
-	i = -1;
-	while (++i < pile->piletop)
-		pile->list[i] = pile->list[i + 1];
-	pile->list[i] = tmp;
+	tmp = pile->list[pile->piletop];
+	i = pile->piletop + 1;
+	while (--i > 0)
+		pile->list[i] = pile->list[i - 1];
+	pile->list[0] = tmp;
 }
 
 void	ft_rotate_pile(t_pile *pila, t_pile *pilb, t_letter letter)
@@ -48,18 +48,18 @@ void	ft_rotate_pile(t_pile *pila, t_pile *pilb, t_letter letter)
 	ft_putchar_fd('\n', 1);
 }
 
-void static	ft_rotate_pile_f(t_pile *pile)
+void static	ft_rotate_reverse_pile_f(t_pile *pile)
 {
 	int	tmp;
 	int	i;
 
 	if (pile->piletop < 1)
 		return ;
-	tmp = pile->list[pile->piletop];
-	i = pile->piletop + 1;
-	while (--i > 0)
-		pile->list[i] = pile->list[i - 1];
-	pile->list[0] = tmp;
+	tmp = pile->list[0];
+	i = -1;
+	while (++i < pile->piletop)
+		pile->list[i] = pile->list[i + 1];
+	pile->list[i] = tmp;
 }
 
 void	ft_rotate_reverse_pile(t_pile *pila, t_pile *pilb, t_letter letter)

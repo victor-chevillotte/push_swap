@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 14:00:22 by mdesoeuv          #+#    #+#             */
-/*   Updated: 2022/01/30 19:12:26 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:16:02 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void static	ft_swap(int *a, int *b)
 	*a = *b;
 	*b = tmp_a;
 }
-
+/*
 int static	fill_tab(int **tab, int argc, char **argv)
 {
 	int	size;
@@ -38,9 +38,9 @@ int static	fill_tab(int **tab, int argc, char **argv)
 		(*tab)[i++] = ft_atoi(argv[j++]);
 	}
 	return (size);
-}
+}*/
 
-int static	swap_from_left(int *tab, int i, int j)
+int	swap_from_left(int *tab, int i, int j)
 {
 	if (i == j)
 		return (i);
@@ -56,7 +56,7 @@ int static	swap_from_left(int *tab, int i, int j)
 	return (j);
 }
 
-int static	swap_from_right(int *tab, int i, int j)
+int	swap_from_right(int *tab, int i, int j)
 {
 	if (i == j)
 		return (i);
