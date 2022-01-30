@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 16:42:11 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 18:44:51 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_isnum(char *num)
 	i = 0;
 	while (num[i])
 	{
-		if (!ft_isprint(num[i]))
+		if (!ft_isdigit(num[i]))
 			return (1);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 16:26:20 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 16:42:40 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 18:38:32 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_swap_pile(t_pile *pila, t_pile *pilb, t_letter letter)
 {
 	ft_putchar_fd('s', 1);
-	ft_putchar_fd(letter, 1);
 	if (letter == a)
 	{
 		ft_putchar_fd('a', 1);
@@ -41,9 +40,9 @@ void	ft_swap_pile_f(t_pile *pile)
 
 	if (pile->piletop < 2)
 		return ;
-	tmp = pile->list[0];
-	pile->list[0] = pile->list[1];
-	pile->list[1] = tmp;
+	tmp = pile->list[pile->piletop];
+	pile->list[pile->piletop] = pile->list[pile->piletop - 1];
+	pile->list[pile->piletop - 1] = tmp;
 }
 
 void	ft_rotate_pile(t_pile *pila, t_pile *pilb, t_letter letter)

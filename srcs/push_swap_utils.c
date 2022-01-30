@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 10:47:35 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/24 20:20:21 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 18:46:46 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	ft_printpile(t_pile *pile)
 
 int	ft_pushswap_error(void)
 {
-	ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n", 2);
 	return (1);
 }
