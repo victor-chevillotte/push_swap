@@ -6,13 +6,13 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 15:33:11 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 16:08:18 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_findnum(char **numlist, char *num, int piletop)
+int	ft_findnum(char **num_tab, char *num)
 {
 	int	i;
 	int	numberofnum;
@@ -20,10 +20,11 @@ int	ft_findnum(char **numlist, char *num, int piletop)
 	
 	numi = ft_atoi(num);
 	i = 0;
+	
 	numberofnum = 0;
-	while (i < piletop)
+	while (num_tab[i])
 	{
-		if (ft_atoi(numlist[i]) == numi)
+		if (ft_atoi(num_tab[i]) == numi)
 			numberofnum++;
 		i++;
 	}
@@ -33,7 +34,7 @@ int	ft_findnum(char **numlist, char *num, int piletop)
 int	ft_isnum(char *num)
 {
 	int	i;
-
+	
 	i = 0;
 	while (num[i])
 	{
@@ -44,17 +45,18 @@ int	ft_isnum(char *num)
 	return (0);
 }
 
-int	ft_checkargs(int piletop, char **argv)
+int	ft_checkargs(char **num_tab)
 {
 	int		i;
 	char	*itoa;
 
 	i = 0;
-	while (argv[i])
+
+	while (num_tab[i])
 	{
-		itoa = ft_itoa(ft_atoi(argv[i]));
-		if ((ft_strncmp(argv[i], itoa, ft_strlen(itoa)) != 0 && ft_atoi(argv[i]) != 0)
-			|| ft_isnum(argv[i]) != 0 || ft_findnum(argv, argv[i], piletop) > 1)
+		itoa = ft_itoa(ft_atoi(num_tab[i]));
+		if ((ft_strncmp(num_tab[i], itoa, ft_strlen(itoa)) != 0 && ft_atoi(num_tab[i]) != 0)
+			|| ft_isnum(num_tab[i]) != 0 || ft_findnum(num_tab, num_tab[i]) > 1)
 		{
 			free(itoa);
 			return (1);
@@ -66,12 +68,12 @@ int	ft_checkargs(int piletop, char **argv)
 	return (0);
 }
 
-int ft_sizeof(char **argv)
+int ft_sizeof(char **num_tab)
 {
 	int	i;
 	
 	i = 0;
-	while (argv[i])
+	while (num_tab[i])
 	{
 		i++;
 	}
@@ -97,8 +99,15 @@ int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 		argc = ft_sizeof(tab);
 	}
 	else 
-		tab = &argv[1];
-	if (ft_checkargs(argc, tab) == 1)
+	{
+		tab = malloc(sizeof(char *) * (argc + 1));
+		if (!tab)
+			return (1);
+		while (argv[++i])
+			tab[i - 1] = ft_strdup(argv[i]);
+		tab[i - 1] = NULL;
+	}
+	if (ft_checkargs(tab) == 1)
 		return (1);
 	tmpnotsorted = malloc(sizeof(int) * (argc));
 	if (!tmpnotsorted)
@@ -151,6 +160,10 @@ int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 		j = 0;
 		i++;
 	}	
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free (tab);
 	free(tmpnotsorted);
 	free(tmp);
 	return (0);

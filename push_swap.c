@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 15:30:53 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 15:57:34 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ int main(int argc, char **argv)
 	ft_printpile(pila);
 	ft_putstr_fd("<---pile B-->\n", 1);
 	ft_printpile(pilb);
+	free(pila->list);
+	free(pilb->list);
 	free(pila);
 	free(pilb);
 	return (0);

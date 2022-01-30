@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2021/12/03 11:52:37 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2022/01/30 15:46:50 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef enum e_letter
 	ab
 }			t_letter;
 
-int		ft_findnum(char **numlist, char *num, int piletop);
+int		ft_findnum(char **num_tab, char *num);
 int		ft_isnum(char *num);
-int		ft_checkargs(int argc, char **argv);
+int		ft_checkargs(char **num_tab);
 void	ft_printpile(t_pile *pile);
 int		ft_pushswap_error(void);
 int		ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb);
