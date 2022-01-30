@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 21:06:41 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 19:42:43 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:57:10 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,24 @@ void	ft_sort_4_5(t_pile *pila, t_pile *pilb)
 	{
 		ft_rotate_reverse_pile(pila, pilb, a);
 		ft_push_pile(pila, pilb, a);
-		ft_rotate_pile(pila, pilb, a);
-		ft_rotate_pile(pila, pilb, a);
+		if (pila->list[pila->piletop] == pilb->list[pilb->piletop] + 1)
+		{
+			ft_push_pile(pila, pilb, a);
+			ft_rotate_reverse_pile(pila, pilb, a);
+			ft_rotate_reverse_pile(pila, pilb, a);
+		}
+		else if (pila->list[pila->piletop] == pilb->list[pilb->piletop] - 1)
+		{
+			ft_rotate_pile(pila, pilb, a);
+			ft_push_pile(pila, pilb, a);
+			ft_rotate_pile(pila, pilb, a);
+			ft_rotate_pile(pila, pilb, a);
+		}
+		else
+		{
+			ft_rotate_pile(pila, pilb, a);
+			ft_rotate_pile(pila, pilb, a);
+		}
 	}
 	else if (pila->list[2] < pilb->list[pilb->piletop])
 	{
