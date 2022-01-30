@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:47:38 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/04 18:37:00 by vchevill         ###   ########lyon.fr   */
+/*   Updated: 2022/01/30 20:02:31 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strnstr(char *haystack, char *needle, size_t len)
 	j = 0;
 	if (needle[0] == '\0' || !needle)
 		return (haystack);
-	if (haystack[0] == '\0' || !haystack || len == 0 )
+	if (haystack[0] == '\0' || !haystack || len == 0)
 		return (NULL);
 	while (haystack[i] != '\0' && i < len)
 	{
