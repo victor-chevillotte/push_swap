@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 15:46:50 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 16:41:47 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include "libft/libft.h"
 # include <stdio.h>
+# include "../libft/libft.h"
 
 typedef struct s_pile
 {

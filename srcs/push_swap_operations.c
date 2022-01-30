@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 16:26:20 by vchevill          #+#    #+#             */
-/*   Updated: 2021/11/24 21:03:06 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 16:42:40 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,6 @@ void	ft_rotate_pile_f(t_pile *pile)
 
 void	ft_push_pile(t_pile *pila, t_pile *pilb, t_letter letter)
 {
-	t_pile	*pile_rem;
-	t_pile	*pile_add;
 
 	ft_putchar_fd('p', 1);
 	if (letter == a)

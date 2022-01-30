@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 15:57:34 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 16:44:12 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	ft_sort_6_100(t_pile *pila, t_pile	*pilb)
 {
-	int	hold_first;
-	int	hold_second;
+	//int	hold_first;
+	//int	hold_second;
 	int	i;
 
 	i = pila->piletop + 1;
-	while (--i >= 0)
+	i = pilb->piletop + 1;
+	/*while (--i >= 0)
 	{
 		if (pila->list[i] < 19)
 		{
@@ -44,7 +45,7 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb)
 		while (++i < hold_second)
 			ft_rotate_reverse_pile(pila, pilb, a);
 	i = -1;
-	ft_push_pile(pila, pilb, a);
+	ft_push_pile(pila, pilb, a);*/
 	//while (++i < pilb->piletop)
 	//	if
 }
@@ -66,10 +67,10 @@ int main(int argc, char **argv)
 		return (ft_pushswap_error());
 	if (ft_init_pushswap(argc, argv, pila, pilb))
 		return (ft_pushswap_error());
-	ft_putstr_fd("<---pile A-->\n", 1);
+	/*ft_putstr_fd("<---pile A-->\n", 1);
 	ft_printpile(pila);
 	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);
+	ft_printpile(pilb);*/
 	if (pila->piletop < 3)
 		ft_sort_0_3(pila, pilb);
 	else if (pila->piletop < 5)
@@ -77,37 +78,7 @@ int main(int argc, char **argv)
 	/*ft_putstr_fd("<---pile A-->\n", 1);
 	ft_printpile(pila);
 	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);
-	ft_rotate_reverse_pile(pila, pilb, a);
-	ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);
-	ft_swap_pile(pila, pilb, b);
-	ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);	
-	ft_swap_pile(pila, pilb, ab);
-	ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);
-	ft_push_pile(pila, pilb, b);
-	ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);
-	ft_push_pile(pila, pilb, b);
-	ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);
-	ft_push_pile(pila, pilb, a);*/
-	ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);
+	ft_printpile(pilb);*/
 	free(pila->list);
 	free(pilb->list);
 	free(pila);

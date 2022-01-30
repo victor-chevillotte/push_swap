@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 16:21:06 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 16:42:11 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_match_index(int argc, int *tmp, int *tmpnotsorted, t_pile *pila)
 	free(tmp);
 }
 
-int	ft_init_3(int argc, char **tab, t_pile *pila, t_pile *pilb)
+int	ft_init_3(int argc, char **tab, t_pile *pila)
 {
 	int		*tmp;
 	int		*tmpnotsorted;
@@ -141,7 +141,7 @@ int	ft_init_2(int argc, char **tab, t_pile *pila, t_pile *pilb)
 	pilb->list = malloc(sizeof(int) * (pila->piletop + 1));
 	if (!(pilb->list))
 		return (1);
-	if (ft_init_3(argc, tab, pila, pilb) == 1)
+	if (ft_init_3(argc, tab, pila) == 1)
 		return (1);
 	return (0);
 }
