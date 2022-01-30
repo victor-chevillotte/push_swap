@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 18:14:41 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:03:30 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb)
 	//	if
 }
 
+int	ft_is_sorted(t_pile *pila)
+{
+	int	i;
+
+	i = 0;
+	while (pila->list[i] > pila->list[i + 1] && i < pila->piletop)
+		i++;
+	if (i == pila->piletop)
+		return (1);
+	else
+		return (0);
+}
 
 int main(int argc, char **argv)
 {
@@ -71,10 +83,14 @@ int main(int argc, char **argv)
 	ft_printpile(pila);
 	ft_putstr_fd("<---pile B-->\n", 1);
 	ft_printpile(pilb);*/
-	if (pila->piletop < 3)
-		ft_sort_0_3(pila, pilb);
-	else if (pila->piletop < 5)
-		ft_sort_4_5(pila, pilb);
+	if (!ft_is_sorted(pila))
+	{
+		if (pila->piletop < 3)
+			ft_sort_0_3(pila, pilb);
+		else if (pila->piletop < 5)
+			ft_sort_4_5(pila, pilb);
+	}
+	
 	/*ft_putstr_fd("<---pile A-->\n", 1);
 	ft_printpile(pila);
 	ft_putstr_fd("<---pile B-->\n", 1);
