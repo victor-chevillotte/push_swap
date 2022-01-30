@@ -6,60 +6,47 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 00:09:11 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 00:19:02 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
+int static ft_get_min_max(t_extrem	*min, t_extrem	*max, t_pile	*pilb)
 {
-	int			mediane;
-	int			is_chunk;
+	int	i;
+	
+	i = -1;
+	min->value = pilb->piletop + 1;
+	max->value = -1;
+	while (++i <= pilb->piletop)
+	{
+		if (pilb->list[i] <= min->value)
+		{
+			min->value = pilb->list[i];
+			min->index = i;
+		}
+		if (pilb->list[i] >= max->value)
+		{
+			max->value = pilb->list[i];
+			max->index = i;
+		}
+	}
+	if (pilb->piletop % 2 == 0)
+		return (pilb->piletop / 2);
+	else
+		return (pilb->piletop / 2 + 1);
+}
+void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
+{
 	int			i;
 	int 		med_b;
 	t_extrem	min;
 	t_extrem	max;
-
-	is_chunk = 0;
-	if (size_of_pile < 100)
-		mediane = size_of_pile / 2;
-	else
-	{
-		mediane = size_of_pile / 2;
-		is_chunk = 1;
-	}
-	i = -1;
-	while (++i <= size_of_pile)
-	{
-		if (pila->list[pila->piletop] <= mediane)
-			ft_push_pile(pila, pilb, b);
-		else
-			ft_rotate_pile(pila, pilb, a);
-	}
+	
 	while (pilb->piletop >= 0)
 	{
-		i = -1;
-		min.value = pilb->piletop + 1;
-		max.value = -1;
-		while (++i <= pilb->piletop)
-		{
-			if (pilb->list[i] <= min.value)
-			{
-				min.value = pilb->list[i];
-				min.index = i;
-			}
-			if (pilb->list[i] >= max.value)
-			{
-				max.value = pilb->list[i];
-				max.index = i;
-			}
-		}
-		if (pilb->piletop % 2 == 0)
-			med_b = pilb->piletop / 2;
-		else
-			med_b = pilb->piletop / 2 + 1;
+		med_b = ft_get_min_max (&min, &max, pilb);
 		/*ft_putstr_fd("<---pile B-->\n", 1);
 		ft_printpile(pilb);
 		dprintf(1, "max index=%i, min index=%i, med_b =%i \n", max.index, min.index, med_b );*/
@@ -138,4 +125,29 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 		if (min.chosen == 1)
 			ft_rotate_pile(pila, pilb, a);
 	}
+}
+
+void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
+{
+	int			mediane;
+	int			is_chunk;
+	int			i;
+	
+	is_chunk = 0;
+	i = -1;
+	if (size_of_pile < 100)
+		mediane = size_of_pile / 2;
+	else
+	{
+		mediane = size_of_pile / 2;
+		is_chunk = 1;
+	}
+	while (++i <= size_of_pile)
+	{
+		if (pila->list[pila->piletop] <= mediane)
+			ft_push_pile(pila, pilb, b);
+		else
+			ft_rotate_pile(pila, pilb, a);
+	}
+	
 }
