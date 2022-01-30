@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 20:06:59 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 22:02:58 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_pile
 	int			*list;
 	char		letter;
 }				t_pile;
+
+typedef struct s_extrem
+{
+	int			value;
+	int			index;
+}				t_extrem;
 
 typedef enum e_letter
 {
@@ -57,6 +63,7 @@ void	ft_sort_3_part2(t_pile *pila, t_pile	*pilb);
 void	ft_sort_3(t_pile *pila, t_pile	*pilb);
 void	ft_sort_0_3(t_pile	*pila, t_pile	*pilb);
 void	ft_sort_4_5(t_pile *pila, t_pile *pilb);
+void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile);
 void	ft_printpile(t_pile *pile);
 int		swap_from_right(int *tab, int i, int j);
 int		swap_from_left(int *tab, int i, int j);

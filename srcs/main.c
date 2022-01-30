@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 20:24:40 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/30 22:03:05 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int main(int argc, char **argv)
 			ft_sort_0_3(pila, pilb);
 		else if (pila->piletop < 5)
 			ft_sort_4_5(pila, pilb);
+		else
+			ft_sort_6_100(pila, pilb, pila->piletop);
 	}
 	/*ft_putstr_fd("<---pile A-->\n", 1);
 	ft_printpile(pila);
