@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 23:00:11 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 23:00:55 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 23:26:32 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,26 @@ int	set_mediane(t_pile *pila, int chunk)
 		return ((pila->piletop + 1) / chunk);
 }
 
+void static	ft_put_min_to_top_2(t_pile *pila, t_pile *pilb, t_extrem *min)
+{
+	if (min->index > pila->piletop / 2)
+	{
+		while (min->index != pila->piletop)
+		{
+			ft_rotate_pile(pila, pilb, a);
+			min->index++;
+		}
+	}
+	else if (min->index <= pila->piletop / 2)
+	{
+		while (min->index >= 0)
+		{
+			ft_rotate_reverse_pile(pila, pilb, a);
+			min->index--;
+		}
+	}
+}
+
 void	ft_put_min_to_top(t_pile *pila, t_pile	*pilb, int chunk_num)
 {
 	int			i;
@@ -73,20 +93,5 @@ void	ft_put_min_to_top(t_pile *pila, t_pile	*pilb, int chunk_num)
 			min.index = i;
 		}
 	}
-	if (min.index > pila->piletop / 2)
-	{
-		while (min.index != pila->piletop)
-		{
-			ft_rotate_pile(pila, pilb, a);
-			min.index++;
-		}
-	}
-	else if (min.index <= pila->piletop / 2)
-	{
-		while (min.index >= 0)
-		{
-			ft_rotate_reverse_pile(pila, pilb, a);
-			min.index--;
-		}
-	}
+	ft_put_min_to_top_2(pila, pilb, &min);
 }
