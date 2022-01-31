@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 22:26:52 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:31:44 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,8 +264,8 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 		ft_printpile(pila);*/
 		chunk_num++;
 	}
-	ft_put_min_to_top_end(pila, pilb);
+	//ft_put_min_to_top_end(pila, pilb);
 	
-	/*ft_putstr_fd("<---pile A-->\n", 2);
-	ft_printpile(pila);*/
+	ft_putstr_fd("<---pile A-->\n", 2);
+	ft_printpile(pila);
 }
