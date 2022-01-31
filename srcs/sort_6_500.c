@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 11:29:02 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 11:42:08 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,35 +131,42 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 	int			is_chunk;
 	int			i;
 	t_extrem	min;
+	int 		med_2;
 	
 	is_chunk = 0;
 	if (size_of_pile < 100)
+	{
+		mediane = size_of_pile/ 2;
 		if (pila->piletop % 2 == 0)
-			mediane = size_of_pile/ 2;
+			med_2 = size_of_pile/ 2;
 		else
-			mediane = size_of_pile/ 2;
+			med_2 = size_of_pile/ 2  + 1;
+	}
 	else
 	{
+		mediane = size_of_pile/ 2;
 		if (pila->piletop % 2 == 0)
-			mediane = size_of_pile / 2;
+			med_2 = size_of_pile / 2;
 		else
-			mediane = size_of_pile / 2;
+			med_2 = size_of_pile / 2 + 1;
 		is_chunk = 1;
 	}
 	/*ft_putstr_fd("<---pile A-->\n", 2);
 	ft_printpile(pila);
 	dprintf(1,"pila->piletop=%i mediane=%i ",pila->piletop, mediane);*/
+	//exit(0);
 	i = 0;
-	while (pila->piletop > mediane)
+	while (pila->piletop > med_2)
 	{
-		if (pila->list[pila->piletop] <= mediane)
+		if (pila->list[pila->piletop] < mediane)
 			ft_push_pile(pila, pilb, b);
 		else
 			ft_rotate_pile(pila, pilb, a);
 		
 	}
 	/*ft_putstr_fd("<---pile A-->\n", 2);
-	ft_printpile(pila);*/
+	ft_printpile(pila);
+	exit(0);*/
 	ft_sort_chunk_in_b(pila, pilb);
 	
 	ft_sort_chunk_in_b(pila, pilb);
@@ -203,7 +210,7 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 	if (min.index > pila->piletop / 2)
 		while (!ft_is_sorted(pila))
 			ft_rotate_pile(pila, pilb, a);
-	else if (min.index < pila->piletop / 2)
+	else if (min.index <= pila->piletop / 2)
 		while (!ft_is_sorted(pila))
 			ft_rotate_reverse_pile(pila, pilb, a);
 	/*				ft_putstr_fd("<---pile A-->\n", 2);
