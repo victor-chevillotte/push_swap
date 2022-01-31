@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 10:47:35 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 18:46:46 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 10:05:58 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_printpile(t_pile *pile)
 	i = pile->piletop + 1;
 	while (--i >= 0)
 	{
-		ft_putnbr_fd(pile->list[i], 1);
-		ft_putchar_fd('\n', 1);
+		ft_putnbr_fd(pile->list[i], 2);
+		ft_putchar_fd('\n', 2);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 00:54:32 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 11:09:44 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int static ft_get_min_max(t_extrem	*min, t_extrem	*max, t_pile	*pilb)
 			max->index = i;
 		}
 	}
-	if (pilb->piletop % 2 == 0)
-		return (pilb->piletop / 2);
-	else
-		return (pilb->piletop / 2 + 1);
+	return (pilb->piletop / 2);
 }
 
 void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
@@ -48,42 +45,42 @@ void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
 	{
 		med_b = ft_get_min_max(&min, &max, pilb);
 		
-		/*ft_putstr_fd("<---pile B-->\n", 1);
+		/*ft_putstr_fd("<---pile B-->\n", 2);
 		ft_printpile(pilb);
-		dprintf(1, "max index=%i, min index=%i, med_b =%i \n", max.index, min.index, med_b );*/
+		dprintf(2, "max index=%i, min index=%i, med_b =%i \n", max.index, min.index, med_b );*/
 		
 		if (min.index <= med_b && max.index <= med_b )
 		{
 			if (min.index < max.index)
 			{
 				min.chosen = 1;
-				dprintf(2, "bas min 1\n");
+				//dprintf(2, "bas min 1\n");
 				while (--min.index >= 0)
 					ft_rotate_reverse_pile(pila, pilb, b);
 			}
 			else
 			{
 				min.chosen = 0;
-				dprintf(2, "bas max 1\n");
+				//dprintf(2, "bas max 1\n");
 				while (--max.index >= 0)
 					ft_rotate_reverse_pile(pila, pilb, b);
 			}
 			ft_rotate_reverse_pile(pila, pilb, b);
 		}
-		else if ((min.index > med_b  && min.index - med_b > max.index)|| (max.index >= med_b  && max.index - med_b <= min.index))
+		else if ((min.index > med_b  && pilb->piletop - min.index <= max.index) || (max.index >= med_b  && pilb->piletop - max.index <= min.index))
 		{
 			if (min.index > max.index)
 			{
 				min.chosen = 1;
-				dprintf(2, "haut min\n");
-				while (++min.index < pilb->piletop)
+				//dprintf(2, "haut min\n");
+				while (++min.index <= pilb->piletop)
 					ft_rotate_pile(pila, pilb, b);
 			}
 			else
 			{
 				min.chosen = 0;
-				dprintf(2, "haut max\n");
-				while (++max.index < pilb->piletop)
+				//dprintf(2, "haut max\n");
+				while (++max.index <= pilb->piletop)
 					ft_rotate_pile(pila, pilb, b);
 			}
 		}
@@ -92,31 +89,31 @@ void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
 			if (min.index > max.index)
 			{
 				min.chosen = 1;
-				dprintf(2, "haut min 1\n");
-				while (++min.index < pilb->piletop)
+				//dprintf(2, "haut min 1\n");
+				while (++min.index <= pilb->piletop)
 					ft_rotate_pile(pila, pilb, b);
 			}
 			else
 			{
 				min.chosen = 0;
-				dprintf(2, "haut max 1\n");
-				while (++max.index < pilb->piletop)
+				//dprintf(2, "haut max 1\n");
+				while (++max.index <= pilb->piletop)
 					ft_rotate_pile(pila, pilb, b);
 			}
 		}
-		else if ((min.index <= med_b  && min.index <= max.index - med_b) || (max.index <= med_b  && max.index <= min.index - med_b))
+		else if ((min.index <= med_b  && min.index < pilb->piletop - max.index) || (max.index <= med_b  && max.index < pilb->piletop - min.index))
 		{
 		if (min.index < max.index)
 			{
 				min.chosen = 1;
-				dprintf(2, "bas min\n");
+				//dprintf(2, "bas min\n");
 				while (--min.index >= 0)
 					ft_rotate_reverse_pile(pila, pilb, b);
 			}
 			else
 			{
 				min.chosen = 0;
-				dprintf(2, "bas max\n");
+				//dprintf(2, "bas max\n");
 				while (--max.index >= 0)
 					ft_rotate_reverse_pile(pila, pilb, b);
 			}
@@ -137,19 +134,31 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 	
 	is_chunk = 0;
 	if (size_of_pile < 100)
-		mediane = size_of_pile / 2;
+		if (pila->piletop % 2 == 0)
+			mediane = size_of_pile/ 2;
+		else
+			mediane = (size_of_pile + 1) / 2;
 	else
 	{
-		mediane = size_of_pile / 2;
+		if (pila->piletop % 2 == 0)
+			mediane = size_of_pile / 2;
+		else
+			mediane = (size_of_pile + 1) / 2;
 		is_chunk = 1;
 	}
-	while (pila->piletop > mediane)
+	/*ft_putstr_fd("<---pile A-->\n", 2);
+	ft_printpile(pila);
+	dprintf(1,"pila->piletop=%i mediane=%i ",pila->piletop, mediane);*/
+	i = 0;
+	while (pila->piletop >= mediane)
 	{
 		if (pila->list[pila->piletop] <= mediane)
 			ft_push_pile(pila, pilb, b);
 		else
 			ft_rotate_pile(pila, pilb, a);
+		
 	}
+			
 	ft_sort_chunk_in_b(pila, pilb);
 	while (pila->piletop > mediane)
 	{
@@ -188,9 +197,9 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 		}
 	}
 	if (min.index > pila->piletop / 2)
-		while (++min.index < pila->piletop)
-			ft_rotate_pile(pila, pilb, b);
+		while (!ft_is_sorted(pila))
+			ft_rotate_pile(pila, pilb, a);
 	else if (min.index < pila->piletop / 2)
-		while (--min.index >= 0)
-			ft_rotate_reverse_pile(pila, pilb, b);
+		while (!ft_is_sorted(pila))
+			ft_rotate_reverse_pile(pila, pilb, a);
 }

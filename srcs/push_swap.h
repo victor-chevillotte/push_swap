@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 22:07:03 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 10:37:58 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile);
 void	ft_printpile(t_pile *pile);
 int		swap_from_right(int *tab, int i, int j);
 int		swap_from_left(int *tab, int i, int j);
+int		ft_is_sorted(t_pile *pila);
 
 #endif
