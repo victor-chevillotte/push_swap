@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 11:42:08 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:45:20 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,37 +125,22 @@ void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
 	}
 }
 
-void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
+void ft_put_in_b_last(t_pile *pila, t_pile	*pilb, int mediane)
 {
-	int			mediane;
-	int			is_chunk;
-	int			i;
-	t_extrem	min;
-	int 		med_2;
-	
-	is_chunk = 0;
-	if (size_of_pile < 100)
+	while (pila->piletop >= mediane)
 	{
-		mediane = size_of_pile/ 2;
-		if (pila->piletop % 2 == 0)
-			med_2 = size_of_pile/ 2;
+		if (pila->list[pila->piletop] >= mediane)
+			ft_push_pile(pila, pilb, b);
 		else
-			med_2 = size_of_pile/ 2  + 1;
+			ft_rotate_pile(pila, pilb, a);
 	}
-	else
-	{
-		mediane = size_of_pile/ 2;
-		if (pila->piletop % 2 == 0)
-			med_2 = size_of_pile / 2;
-		else
-			med_2 = size_of_pile / 2 + 1;
-		is_chunk = 1;
-	}
+}
+
+void ft_put_in_b(t_pile *pila, t_pile	*pilb, int mediane, int med_2)
+{
 	/*ft_putstr_fd("<---pile A-->\n", 2);
 	ft_printpile(pila);
 	dprintf(1,"pila->piletop=%i mediane=%i ",pila->piletop, mediane);*/
-	//exit(0);
-	i = 0;
 	while (pila->piletop > med_2)
 	{
 		if (pila->list[pila->piletop] < mediane)
@@ -167,24 +152,20 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 	/*ft_putstr_fd("<---pile A-->\n", 2);
 	ft_printpile(pila);
 	exit(0);*/
-	ft_sort_chunk_in_b(pila, pilb);
-	
-	ft_sort_chunk_in_b(pila, pilb);
+}
 
-	while (pila->piletop >= mediane)
-	{
-		if (pila->list[pila->piletop] >= mediane)
-			ft_push_pile(pila, pilb, b);
-		else
-			ft_rotate_pile(pila, pilb, a);
-	}
+void ft_put_min_to_top(t_pile *pila, t_pile	*pilb)
+{
+	int i;
+	t_extrem min;
+	
 	i = -1;
 	min.value = pila->piletop + 1;
 	while (++i <= pila->piletop)
 	{
 		if (pila->list[i] <= min.value)
 		{
-			min.value = pilb->list[i];
+			min.value = pila->list[i];
 			min.index = i;
 		}
 	}
@@ -194,16 +175,20 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 	else if (min.index < pila->piletop / 2)
 		while (--min.index >= 0)
 			ft_rotate_reverse_pile(pila, pilb, b);
-			
-	ft_sort_chunk_in_b(pila, pilb);
+}
 
+void ft_put_min_to_top_end(t_pile *pila, t_pile	*pilb)
+{
+	int i;
+	t_extrem min;
+	
 	i = -1;
 	min.value = -1 ;
 	while (++i <= pila->piletop)
 	{
 		if (pila->list[i] <= min.value || min.value == -1)
 		{
-			min.value = pilb->list[i];
+			min.value = pila->list[i];
 			min.index = i;
 		}
 	}
@@ -213,6 +198,43 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 	else if (min.index <= pila->piletop / 2)
 		while (!ft_is_sorted(pila))
 			ft_rotate_reverse_pile(pila, pilb, a);
-	/*				ft_putstr_fd("<---pile A-->\n", 2);
-	ft_printpile(pila);*/
+}
+
+void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
+{
+	int			mediane;
+	int			chunk;
+	int 		med_2;
+	
+	if (size_of_pile <= 100)
+	{
+		mediane = size_of_pile/ 2;
+		if (pila->piletop % 2 == 0)
+			med_2 = size_of_pile/ 2;
+		else
+			med_2 = size_of_pile/ 2  + 1;
+		chunk = 2;
+	}
+	else
+	{
+		mediane = size_of_pile/ 2;
+		if (pila->piletop % 2 == 0)
+			med_2 = size_of_pile / 2;
+		else
+			med_2 = size_of_pile / 2 + 1;
+		chunk = 4;
+	}
+	while (chunk > 0)
+	{
+		if (chunk == 1)
+			ft_put_in_b_last(pila, pilb, mediane);
+		ft_put_in_b(pila, pilb, mediane, med_2);
+		ft_sort_chunk_in_b(pila, pilb);
+		if (chunk != 1)
+			ft_put_min_to_top(pila, pilb);
+		chunk--;
+	}
+	ft_put_min_to_top_end(pila, pilb);
+					ft_putstr_fd("<---pile A-->\n", 2);
+	ft_printpile(pila);
 }
