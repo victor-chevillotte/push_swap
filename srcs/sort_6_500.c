@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 13:45:20 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 13:53:33 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,11 @@ void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
 	}
 }
 
-void ft_put_in_b_last(t_pile *pila, t_pile	*pilb, int mediane)
+void ft_put_in_b_last(t_pile *pila, t_pile	*pilb, int size_of_pile)
 {
+	int mediane ;
+
+	mediane = size_of_pile / 2;
 	while (pila->piletop >= mediane)
 	{
 		if (pila->list[pila->piletop] >= mediane)
@@ -136,8 +139,22 @@ void ft_put_in_b_last(t_pile *pila, t_pile	*pilb, int mediane)
 	}
 }
 
-void ft_put_in_b(t_pile *pila, t_pile	*pilb, int mediane, int med_2)
+int set_mediane(t_pile *pila, int size_of_pile)
 {
+	if (pila->piletop % 2 == 0)
+		return (size_of_pile / 2);
+	else
+		return (size_of_pile / 2  + 1);
+}
+
+void ft_put_in_b(t_pile *pila, t_pile	*pilb, int chunk, int size_of_pile)
+{
+	int mediane ;
+	int med_2 ;
+
+	mediane = size_of_pile / 2;
+	med_2 = set_mediane(pila, size_of_pile);
+	chunk = 0;
 	/*ft_putstr_fd("<---pile A-->\n", 2);
 	ft_printpile(pila);
 	dprintf(1,"pila->piletop=%i mediane=%i ",pila->piletop, mediane);*/
@@ -149,9 +166,6 @@ void ft_put_in_b(t_pile *pila, t_pile	*pilb, int mediane, int med_2)
 			ft_rotate_pile(pila, pilb, a);
 		
 	}
-	/*ft_putstr_fd("<---pile A-->\n", 2);
-	ft_printpile(pila);
-	exit(0);*/
 }
 
 void ft_put_min_to_top(t_pile *pila, t_pile	*pilb)
@@ -202,33 +216,17 @@ void ft_put_min_to_top_end(t_pile *pila, t_pile	*pilb)
 
 void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 {
-	int			mediane;
-	int			chunk;
-	int 		med_2;
+	int chunk;
 	
 	if (size_of_pile <= 100)
-	{
-		mediane = size_of_pile/ 2;
-		if (pila->piletop % 2 == 0)
-			med_2 = size_of_pile/ 2;
-		else
-			med_2 = size_of_pile/ 2  + 1;
 		chunk = 2;
-	}
 	else
-	{
-		mediane = size_of_pile/ 2;
-		if (pila->piletop % 2 == 0)
-			med_2 = size_of_pile / 2;
-		else
-			med_2 = size_of_pile / 2 + 1;
 		chunk = 4;
-	}
 	while (chunk > 0)
 	{
 		if (chunk == 1)
-			ft_put_in_b_last(pila, pilb, mediane);
-		ft_put_in_b(pila, pilb, mediane, med_2);
+			ft_put_in_b_last(pila, pilb, size_of_pile);
+		ft_put_in_b(pila, pilb, chunk, size_of_pile);
 		ft_sort_chunk_in_b(pila, pilb);
 		if (chunk != 1)
 			ft_put_min_to_top(pila, pilb);
