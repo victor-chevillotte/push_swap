@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 11:18:15 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 23:03:07 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,17 @@ int	ft_is_sorted(t_pile *pila)
 		return (0);
 }
 
-int main(int argc, char **argv)
+void static	ft_sort(t_pile *pila, t_pile *pilb)
+{
+	if (pila->piletop < 3)
+		ft_sort_0_3(pila, pilb);
+	else if (pila->piletop < 5)
+		ft_sort_4_5(pila, pilb);
+	else
+		ft_sort_6_500(pila, pilb, pila->piletop);
+}
+
+int	main(int argc, char **argv)
 {
 	t_pile	*pila;
 	t_pile	*pilb;
@@ -41,23 +51,8 @@ int main(int argc, char **argv)
 		return (ft_pushswap_error());
 	if (ft_init_pushswap(argc, argv, pila, pilb))
 		return (ft_pushswap_error());
-	/*ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);*/
 	if (!ft_is_sorted(pila))
-	{
-		if (pila->piletop < 3)
-			ft_sort_0_3(pila, pilb);
-		else if (pila->piletop < 5)
-			ft_sort_4_5(pila, pilb);
-		else
-			ft_sort_6_100(pila, pilb, pila->piletop);
-	}
-	/*ft_putstr_fd("<---pile A-->\n", 1);
-	ft_printpile(pila);
-	ft_putstr_fd("<---pile B-->\n", 1);
-	ft_printpile(pilb);*/
+		ft_sort(pila, pilb);
 	free(pila->list);
 	free(pilb->list);
 	free(pila);

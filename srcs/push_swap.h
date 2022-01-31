@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 10:37:58 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 23:02:52 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,17 @@ void	ft_rotate_reverse_pile(t_pile *pila, t_pile *pilb, t_letter letter);
 void	ft_push_pile(t_pile *pila, t_pile *pilb, t_letter letter);
 
 /* SORT */
-void	ft_sort_3_part2(t_pile *pila, t_pile	*pilb);
-void	ft_sort_3(t_pile *pila, t_pile	*pilb);
 void	ft_sort_0_3(t_pile	*pila, t_pile	*pilb);
 void	ft_sort_4_5(t_pile *pila, t_pile *pilb);
-void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile);
-void	ft_printpile(t_pile *pile);
+
+/* SORT 6->500*/
+void	ft_sort_6_500(t_pile *pila, t_pile	*pilb, int size_of_pile);
+void	ft_put_min_to_top_end(t_pile *pila, t_pile	*pilb);
+void	ft_put_in_b_last(t_pile *pila, t_pile	*pilb, int size_of_pile);
+int		set_mediane(t_pile *pila, int chunk);
+void	ft_put_min_to_top(t_pile *pila, t_pile	*pilb, int chunk_num);
+
+/*QUICK SORT */
 int		swap_from_right(int *tab, int i, int j);
 int		swap_from_left(int *tab, int i, int j);
 int		ft_is_sorted(t_pile *pila);
