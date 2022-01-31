@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 22:07:57 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 22:26:52 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ void ft_put_min_to_top(t_pile *pila, t_pile	*pilb, int chunk_num)
 	int i;
 	t_extrem min;
 	
+	chunk_num = 0;
 	i = -1;
 	min.value = -1;
 	while (++i <= pila->piletop)
@@ -164,7 +165,7 @@ void ft_put_min_to_top(t_pile *pila, t_pile	*pilb, int chunk_num)
 		}
 
 	}
-			dprintf(2, "%i", min.index);
+	//		dprintf(2, "%i", min.index);
 	if (min.index > pila->piletop / 2)
 	{
 		while (min.index != pila->piletop)
@@ -178,15 +179,13 @@ void ft_put_min_to_top(t_pile *pila, t_pile	*pilb, int chunk_num)
 	{
 		while (min.index >= 0)
 		{
-			min.index--;
 			ft_rotate_reverse_pile(pila, pilb, a);
+			min.index--;
 		}
-		if (chunk_num == 3)
-			dprintf(1, "%i", min.index);
 	}
 		
 					
-									dprintf(2, "%i", min.index);
+		//							dprintf(2, "%i", min.index);
 			
 }
 
@@ -201,10 +200,10 @@ void ft_put_in_b(t_pile *pila, t_pile	*pilb, int chunk_num, int chunk)
 	
 	size_of_pile = pila->piletop;
 	
-	ft_putstr_fd("<---pile A-->\n", 2);
+	/*ft_putstr_fd("<---pile A-->\n", 2);
 	ft_printpile(pila);
 		dprintf(2,"size_of_pile=%i mediane=%i chunk_num=%i chunk =%i med_2=%i size_of_pilecc - size_of_pile /chunk =%i,size_of_pile - size_of_pile / chunk=%i",size_of_pile, mediane, chunk_num, chunk, med_2, size_of_pile - size_of_pile / chunk, med_2);
-	//exit(0);
+	*///exit(0);
 	while (pila->piletop >= size_of_pile - size_of_pile / chunk)
 	{
 		if ((pila->list[pila->piletop] <= (med_2 * chunk_num) + (size_of_pile / chunk)) && (pila->list[pila->piletop] >= med_2 * chunk_num))
@@ -215,10 +214,10 @@ void ft_put_in_b(t_pile *pila, t_pile	*pilb, int chunk_num, int chunk)
 	if (chunk_num != 0)
 		ft_put_min_to_top(pila, pilb, chunk_num);
 	//exit(0);
-	ft_putstr_fd("<---pile A-->\n", 2);
+	/*ft_putstr_fd("<---pile A-->\n", 2);
 	ft_printpile(pila);
 		ft_putstr_fd("<---pile B-->\n", 2);
-	ft_printpile(pilb);
+	ft_printpile(pilb);*/
 	
 }
 			
@@ -261,11 +260,12 @@ void	ft_sort_6_100(t_pile *pila, t_pile	*pilb, int size_of_pile)
 		ft_sort_chunk_in_b(pila, pilb);
 		//	if (chunk_num != chunk - 1)
 		//ft_put_min_to_top(pila, pilb);
-		ft_putstr_fd("<---pile A-->\n", 2);
-		ft_printpile(pila);
+		/*ft_putstr_fd("<---pile A-->\n", 2);
+		ft_printpile(pila);*/
 		chunk_num++;
 	}
-	//ft_put_min_to_top_end(pila, pilb);
-	ft_putstr_fd("<---pile A-->\n", 2);
-	ft_printpile(pila);
+	ft_put_min_to_top_end(pila, pilb);
+	
+	/*ft_putstr_fd("<---pile A-->\n", 2);
+	ft_printpile(pila);*/
 }
