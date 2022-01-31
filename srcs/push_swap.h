@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 23:02:52 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 23:19:16 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	ft_put_min_to_top_end(t_pile *pila, t_pile	*pilb);
 void	ft_put_in_b_last(t_pile *pila, t_pile	*pilb, int size_of_pile);
 int		set_mediane(t_pile *pila, int chunk);
 void	ft_put_min_to_top(t_pile *pila, t_pile	*pilb, int chunk_num);
+void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb);
+int		ft_get_min_max(t_extrem	*min, t_extrem	*max, t_pile	*pilb);
 
 /*QUICK SORT */
 int		swap_from_right(int *tab, int i, int j);

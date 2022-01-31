@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 23:04:19 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/01/31 23:20:43 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,86 +35,7 @@ int	ft_get_min_max(t_extrem	*min, t_extrem	*max, t_pile	*pilb)
 	return (pilb->piletop / 2);
 }
 
-void	ft_sort_chunk_in_b(t_pile *pila, t_pile	*pilb)
-{
-	int			med_b;
-	t_extrem	min;
-	t_extrem	max;
-
-	while (pilb->piletop >= 0)
-	{
-		med_b = ft_get_min_max(&min, &max, pilb);
-		if (min.index <= med_b && max.index <= med_b)
-		{
-			if (min.index < max.index)
-			{
-				min.chosen = 1;
-				while (--min.index >= 0)
-					ft_rotate_reverse_pile(pila, pilb, b);
-			}
-			else
-			{
-				min.chosen = 0;
-				while (--max.index >= 0)
-					ft_rotate_reverse_pile(pila, pilb, b);
-			}
-			ft_rotate_reverse_pile(pila, pilb, b);
-		}
-		else if ((min.index > med_b && pilb->piletop - min.index <= max.index)
-			|| (max.index >= med_b && pilb->piletop - max.index <= min.index))
-		{
-			if (min.index > max.index)
-			{
-				min.chosen = 1;
-				while (++min.index <= pilb->piletop)
-					ft_rotate_pile(pila, pilb, b);
-			}
-			else
-			{
-				min.chosen = 0;
-				while (++max.index <= pilb->piletop)
-					ft_rotate_pile(pila, pilb, b);
-			}
-		}
-		else if (min.index > med_b && max.index > med_b)
-		{
-			if (min.index > max.index)
-			{
-				min.chosen = 1;
-				while (++min.index <= pilb->piletop)
-					ft_rotate_pile(pila, pilb, b);
-			}
-			else
-			{
-				min.chosen = 0;
-				while (++max.index <= pilb->piletop)
-					ft_rotate_pile(pila, pilb, b);
-			}
-		}
-		else if ((min.index <= med_b && min.index < pilb->piletop - max.index)
-			|| (max.index <= med_b && max.index < pilb->piletop - min.index))
-		{
-			if (min.index < max.index)
-			{
-				min.chosen = 1;
-				while (--min.index >= 0)
-					ft_rotate_reverse_pile(pila, pilb, b);
-			}
-			else
-			{
-				min.chosen = 0;
-				while (--max.index >= 0)
-					ft_rotate_reverse_pile(pila, pilb, b);
-			}
-			ft_rotate_reverse_pile(pila, pilb, b);
-		}
-		ft_push_pile(pila, pilb, a);
-		if (min.chosen == 1)
-			ft_rotate_pile(pila, pilb, a);
-	}
-}
-
-void	ft_put_in_b(t_pile *pila, t_pile	*pilb, int chunk_num, int chunk)
+void static	ft_put_in_b(t_pile *pila, t_pile	*pilb, int chunk_num, int chunk)
 {
 	int	mediane ;
 	int	med_2 ;

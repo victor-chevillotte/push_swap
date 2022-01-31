@@ -6,7 +6,7 @@
 #    By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 16:38:36 by vchevill          #+#    #+#              #
-#    Updated: 2022/01/31 23:04:06 by vchevill         ###   ########.fr        #
+#    Updated: 2022/01/31 23:18:00 by vchevill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS =	ft_init.c \
 		sort_0_3.c \
 		sort_4_5.c \
 		sort_6_500.c \
-		sort_6_500_2.c
+		sort_6_500_2.c \
+		ft_sort_b.c
 
 SRCS_FILES = $(addprefix srcs/, $(SRCS))
 
