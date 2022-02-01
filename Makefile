@@ -6,14 +6,14 @@
 #    By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 16:38:36 by vchevill          #+#    #+#              #
-#    Updated: 2022/01/31 23:18:00 by vchevill         ###   ########.fr        #
+#    Updated: 2022/02/01 12:45:12 by vchevill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = push_swap
 
-CC = gcc -Wall -Werror -Wextra #-g -fsanitize=address -g3
+CC = gcc -Wall -Werror -Wextra
 
 SRCS =	ft_init.c \
 		ft_utils_init.c \

@@ -6,7 +6,7 @@
 #    By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 11:25:48 by vchevill          #+#    #+#              #
-#    Updated: 2021/11/08 11:47:23 by vchevill         ###   ########lyon.fr    #
+#    Updated: 2022/01/31 23:36:35 by vchevill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ RM		= rm -f
 all :       $(NAME)
 
 %.o :		%.c libft.h
-			gcc $(FLAGS) -c $< -o $@ #gcc -c du fichier %.c a renommer em %.o pour renommer $< premier arg et $@ nom de la regle
+			gcc $(FLAGS) -c $< -o $@
 
 $(NAME) :	$(OBJS)
 			$(LIB) $(NAME) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:06:39 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 23:03:07 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/01 12:50:06 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_is_sorted(t_pile *pila)
 	int	i;
 
 	i = 0;
-	while (pila->list[i] > pila->list[i + 1] && i < pila->piletop)
+	while (i < pila->piletop && pila->list[i] > pila->list[i + 1])
 		i++;
 	if (i == pila->piletop)
 		return (1);
@@ -45,12 +45,12 @@ int	main(int argc, char **argv)
 	argc--;
 	pila = malloc(sizeof(t_pile));
 	if (!pila)
-		return (ft_pushswap_error());
+		return (ft_pushswap_error(NULL, NULL));
 	pilb = malloc(sizeof(t_pile));
 	if (!pilb)
-		return (ft_pushswap_error());
+		return (ft_pushswap_error(pila, NULL));
 	if (ft_init_pushswap(argc, argv, pila, pilb))
-		return (ft_pushswap_error());
+		return (ft_pushswap_error(pila, pilb));
 	if (!ft_is_sorted(pila))
 		ft_sort(pila, pilb);
 	free(pila->list);
