@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/02/03 13:00:37 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:44:41 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_match_index(int argc, int *tmp, int *tmpnotsorted, t_pile *pila);
 int		ft_sizeof(char **num_tab);
 int		ft_findnum(char **num_tab, char *num);
 int		ft_isnum(char *num);
-int		ft_checkargs(char **num_tab);
+int		ft_checkargs(char **num_tab, char *tmp);
 int		ft_pushswap_error(t_pile *pila, t_pile *pilb);
 
 /* QUICK_SORT */

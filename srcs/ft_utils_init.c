@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:05:52 by vchevill          #+#    #+#             */
-/*   Updated: 2022/02/03 12:04:38 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:44:08 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ int	ft_isnum(char *num)
 	return (0);
 }
 
-int	ft_checkargs(char **num_tab)
+int	ft_checkargs(char **num_tab, char *tmp)
 {
 	int		i;
 	char	*itoa;
 
+	free(tmp);
 	i = 0;
 	while (num_tab[i])
 	{
