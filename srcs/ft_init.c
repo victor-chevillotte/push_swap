@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2022/02/03 12:58:15 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/03 13:04:21 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,24 @@ int	ft_init_2(int argc, char **tab, t_pile *pila, t_pile *pilb)
 	return (0);
 }
 
+int static	ft_join(char *tmp, char *argv_s)
+{
+	if (argv_s[0] != '\0')
+	{
+		tmp = ft_strjoin_free_s1(tmp, argv_s);
+		tmp = ft_strjoin_free_s1(tmp, " ");
+		argv_s = ft_strtrim(argv_s, " ");
+		if (!tmp || !argv_s
+			|| ft_strncmp(argv_s, "", ft_strlen(argv_s) == 0))
+		{
+			if (tmp)
+				free(tmp);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 {
 	int		i;
@@ -68,24 +86,12 @@ int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 	j = 0;
 	tmp = NULL;
 	while (++i <= argc)
-	{
-		if (argv[i][0] != '\0')
-		{
-			tmp = ft_strjoin_free_s1(tmp, argv[i]);
-			tmp = ft_strjoin_free_s1(tmp, " ");
-			argv[i] = ft_strtrim(argv[i], " ");
-			if (!tmp || !argv[i]
-				|| ft_strncmp(argv[i], "", ft_strlen(argv[i])) == 0)
-			{
-				if (tmp)
-					free(tmp);
-				return (1);
-			}
-		}
-	}
+		if (ft_join(tmp, argv[i]) == 1)
+			return (1);
 	tab = ft_split(tmp, ' ');
 	free(tmp);
-	if (ft_checkargs(tab) == 1 || ft_init_2(ft_sizeof(tab), tab, pila, pilb) == 1)
+	if (ft_checkargs(tab) == 1
+		|| ft_init_2(ft_sizeof(tab), tab, pila, pilb) == 1)
 	{
 		i = -1;
 		while (tab[++i])
