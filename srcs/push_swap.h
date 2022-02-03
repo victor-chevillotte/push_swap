@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:16:13 by vchevill          #+#    #+#             */
-/*   Updated: 2022/02/01 12:35:11 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/03 11:39:05 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ int		ft_get_min_max(t_extrem	*min, t_extrem	*max, t_pile	*pilb);
 int		swap_from_right(int *tab, int i, int j);
 int		swap_from_left(int *tab, int i, int j);
 int		ft_is_sorted(t_pile *pila);
+
+void	ft_printpile(t_pile *pile);
+
 
 #endif

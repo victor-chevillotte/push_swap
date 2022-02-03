@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:03:02 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/30 21:40:10 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/03 12:58:15 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_init_3(int argc, char **tab, t_pile *pila)
 	int		*tmpnotsorted;
 	int		i;
 
-	i = argc -1;
+	i = argc - 1;
 	tmpnotsorted = malloc(sizeof(int) * (argc));
 	if (!tmpnotsorted)
 		return (1);
@@ -61,27 +61,37 @@ int	ft_init_pushswap(int argc, char **argv, t_pile *pila, t_pile *pilb)
 {
 	int		i;
 	char	**tab;
+	char	*tmp;
 	int		j;
 
 	i = 0;
 	j = 0;
-	if (argc == 1)
+	tmp = NULL;
+	while (++i <= argc)
 	{
-		tab = ft_split(argv[1], ' ');
-		if (!tab)
-			return (1);
-		argc = ft_sizeof(tab);
+		if (argv[i][0] != '\0')
+		{
+			tmp = ft_strjoin_free_s1(tmp, argv[i]);
+			tmp = ft_strjoin_free_s1(tmp, " ");
+			argv[i] = ft_strtrim(argv[i], " ");
+			if (!tmp || !argv[i]
+				|| ft_strncmp(argv[i], "", ft_strlen(argv[i])) == 0)
+			{
+				if (tmp)
+					free(tmp);
+				return (1);
+			}
+		}
 	}
-	else
+	tab = ft_split(tmp, ' ');
+	free(tmp);
+	if (ft_checkargs(tab) == 1 || ft_init_2(ft_sizeof(tab), tab, pila, pilb) == 1)
 	{
-		tab = malloc(sizeof(char *) * (argc + 1));
-		if (!tab)
-			return (1);
-		while (argv[++i])
-			tab[i - 1] = ft_strdup(argv[i]);
-		tab[i - 1] = NULL;
-	}
-	if (ft_checkargs(tab) == 1 || ft_init_2(argc, tab, pila, pilb) == 1)
+		i = -1;
+		while (tab[++i])
+			free(tab[i]);
+		free (tab);
 		return (1);
+	}
 	return (0);
 }

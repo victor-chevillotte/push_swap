@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 19:05:52 by vchevill          #+#    #+#             */
-/*   Updated: 2022/02/01 12:47:55 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/03 12:04:38 by vchevill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ int	ft_checkargs(char **num_tab)
 				&& ft_strncmp(num_tab[i], "+0", ft_strlen(num_tab[i])) != 0)
 			|| ft_isnum(num_tab[i]) != 0 || ft_findnum(num_tab, num_tab[i]) > 1)
 		{
-			i = -1;
-			while (num_tab[++i])
-				free(num_tab[i]);
-			free (num_tab);
 			free(itoa);
 			return (1);
 		}
@@ -103,7 +99,7 @@ void	ft_match_index(int argc, int *tmp, int *tmpnotsorted, t_pile *pila)
 		}
 		j = 0;
 		i++;
-	}	
+	}
 	free(tmpnotsorted);
 	free(tmp);
 }
