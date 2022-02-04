@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 23:00:11 by vchevill          #+#    #+#             */
-/*   Updated: 2022/01/31 23:26:32 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/04 10:51:42 by vchevill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	ft_put_min_to_top_end(t_pile *pila, t_pile	*pilb)
 			min.index = i;
 		}
 	}
+	i = -1;
 	if (min.index > pila->piletop / 2)
-		while (!ft_is_sorted(pila))
+		while (!ft_is_sorted(pila) && ++i <= pila->piletop)
 			ft_rotate_pile(pila, pilb, a);
 	else if (min.index <= pila->piletop / 2)
-		while (!ft_is_sorted(pila))
+		while (!ft_is_sorted(pila) && ++i <= pila->piletop)
 			ft_rotate_reverse_pile(pila, pilb, a);
 }
 
@@ -52,7 +53,7 @@ void	ft_put_in_b_last(t_pile *pila, t_pile	*pilb, int size_of_pile)
 int	set_mediane(t_pile *pila, int chunk)
 {
 	if (pila->piletop % 2 == 0)
-		return (pila->piletop / chunk);
+		return (pila->piletop / chunk + 1);
 	else
 		return ((pila->piletop + 1) / chunk);
 }

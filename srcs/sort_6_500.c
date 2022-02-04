@@ -6,7 +6,7 @@
 /*   By: vchevill <vchevill@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 20:06:36 by vchevill          #+#    #+#             */
-/*   Updated: 2022/02/01 00:56:20 by vchevill         ###   ########.fr       */
+/*   Updated: 2022/02/04 11:11:19 by vchevill         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ int	ft_get_min_max(t_extrem	*min, t_extrem	*max, t_pile	*pilb)
 	return (pilb->piletop / 2);
 }
 
+int static	ft_continue_pb(t_pile *pila, int chunk, int med_2, int size_of_pile)
+{
+	int	i;
+
+	i = -1;
+	while (pila->piletop >= ++i)
+	{
+		if ((pila->list[i] <= (med_2)
+				+ (size_of_pile / chunk))
+			&& (pila->list[i] >= med_2))
+			return (1);
+	}
+	return (0);
+}
+
 void static	ft_put_in_b(t_pile *pila, t_pile	*pilb, int chunk_num, int chunk)
 {
 	int	mediane ;
@@ -44,7 +59,7 @@ void static	ft_put_in_b(t_pile *pila, t_pile	*pilb, int chunk_num, int chunk)
 	mediane = pila->piletop / chunk;
 	med_2 = set_mediane(pila, chunk);
 	size_of_pile = pila->piletop;
-	while (pila->piletop >= size_of_pile - size_of_pile / chunk)
+	while (ft_continue_pb(pila, chunk, (med_2 * chunk_num), size_of_pile) == 1)
 	{
 		if ((pila->list[pila->piletop] <= (med_2 * chunk_num)
 				+ (size_of_pile / chunk))

@@ -1,0 +1,4 @@
+# Push Swap Tester made by Arkhavy | ljohnson@student.42lyon.fr
+# https://github.com/Arkhavy
+# This file will contain every fail you might have while running the tester, have fun !
+
